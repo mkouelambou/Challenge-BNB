@@ -1,9 +1,11 @@
 <?php
 // Je hebt een database nodig om dit bestand te gebruiken....
-
+include "database.php";
 if (!isset($db_conn)) { //deze if-statement checked of er een database-object aanwezig is. Kun je laten staan.
-    return;
+  return;  
 }
+
+
 
 $database_gegevens = null;
 $poolIsChecked = false;
@@ -163,5 +165,4 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
     </script>
     <script src="js/place_markers.js"></script>
 </body>
-
 </html>
