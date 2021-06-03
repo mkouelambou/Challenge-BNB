@@ -11,19 +11,19 @@ $database_gegevens = null;
 $poolIsChecked = false;
 $bathIsChecked = false;
 
-$sql = "SELECT * FROM 'homes' WHERE 1"; //Selecteer alle huisjes uit de database
+$sql = "SELECT * FROM homes WHERE 1"; //Selecteer alle huisjes uit de database
 if (isset($_GET['filter_submit'])) {
 
     if ($_GET['faciliteiten'] == "ligbad") { // Als ligbad is geselecteerd filter dan de zoekresultaten
         $bathIsChecked = true;
 
-        $sql = "SELECT * FROM `homes` WHERE bath_present = 1"; // query die zoekt of er een BAD aanwezig is.
+        $sql = "SELECT * FROM homes WHERE bath_present = 1"; // query die zoekt of er een BAD aanwezig is.
     }
 
     if ($_GET['faciliteiten'] == "zwembad") {
         $poolIsChecked = true;
 
-        $sql = "SELECT * FROM `homes` WHERE pool_present = 1"; // query die zoekt of er een ZWEMBAD aanwezig is.
+        $sql = "SELECT * FROM homes WHERE pool_present = 1"; // query die zoekt of er een ZWEMBAD aanwezig is.
     }
 }
 
@@ -86,7 +86,7 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
             </div>
             <div class="currentBooking">
                 <div class="bookedHome"></div>
-                <?php $totaal = ($huisje['price_p_p_p_n'] * 'aantal_dagen') * 'aantal_personen';?>
+                 <?php  $totaal = ($huisje['price_p_p_p_n'] * 'aantal_dagen') * 'aantal_personen'; ?>
                 <div class="totalPriceBlock">Totale prijs &euro;<span class="totalPrice"><?php echo $totaal;?></span></div>
             </div>
         </div>
@@ -114,25 +114,17 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                         <label for="bbq">Open Haard</label>
                         <input type="radio" id="open haard" name="faciliteiten" value="bbq" <?php if ('$bbqIsChecked') echo 'checked' ?>>
                     </div>
-                    <div class="form-control">
-                        <label for="bbq">Vaatwasser</label>
-                        <input type="radio" id="vaatwasser" name="faciliteiten" value="vaatwasser" <?php if ('$dishwasherIsChecked') echo 'checked' ?>>
-                    </div>
-                    <div class="form-control">
-                        <label for="bbq">Fietsen</label>
-                        <input type="radio" id="fiets" name="faciliteiten" value="fiets" <?php if ('$bikeIsChecked') echo 'checked' ?>>
-                    </div>
                     <button type="submit" name="filter_submit">Filter</button>
                 </form>
                 <div class="homes-box">
                     <?php if (isset($database_gegevens) && $database_gegevens != null) : ?>
                         <?php foreach ($database_gegevens as $huisje) : ?>
                             <h4>
-                                <?php echo $huisje['name']; ?>
+                                <?php echo $huisje['name'] ?>;
                             </h4>
 
                             <p>
-                                <?php echo $huisje['description'] ?>
+                                <?php echo $huisje['description'] ?>;
                             </p>
                             <div class="kenmerken">
                                 <h6>Kenmerken</h6>
@@ -140,26 +132,26 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
 
                                     <?php
                                     if ($huisje['bath_present'] ==  1) {
-                                        echo "<li>Er is ligbad!</li>";
+                                        echo "<li>Ligbad</li>";
                                     }
                                     ?>
 
 
                                     <?php
                                     if ($huisje['pool_present'] ==  1) {
-                                        echo "<li>Er is zwembad!</li>";
+                                        echo "<li>Zwembad</li>";
                                     }
                                     ?>
 
                                     <?php
                                     if ($huisje['bbq_present'] ==  1) {
-                                        echo "<li>Er is bbq!</li>";
+                                        echo "<li>BBQ</li>";
                                     }
                                     ?>
 
                                     <?php
                                     if ($huisje['fireplace_present'] ==  1) {
-                                        echo "<li>Er is a fireplace!</li>";
+                                        echo "<li>Open Haard</li>";
                                     }
                                     ?>
 
