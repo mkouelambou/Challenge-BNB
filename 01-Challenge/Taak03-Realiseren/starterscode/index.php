@@ -51,7 +51,7 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
 
 <body>
     <header>
-        <h1>Quattro Cottage Rental</h1>
+        <h1>Mike's BNB Palace </h1>
     </header>
     <main>
         <div class="left">
@@ -86,10 +86,11 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
             </div>
             <div class="currentBooking">
                 <div class="bookedHome"></div>
-                 <?php  $totaal = ($huisje['price_p_p_p_n'] * 'aantal_dagen') * 'aantal_personen'; ?>
-                <div class="totalPriceBlock">Totale prijs &euro;<span class="totalPrice"><?php echo $totaal;?></span></div>
+                 <?php  $totaal = ($huisje ['price_p_p_p_n'] * 'aantal_dagen' * 'aantal_personen'); ?>
+                <div class="totalPriceBlock"><Totale prijs> &euro;<span class="totalPrice"><?php echo $totaal;?></span></div>
             </div>
-        </div>
+            </div>
+
         <div class="right">
             <div class="filter-box">
                 <form class="filter-form">
@@ -144,6 +145,12 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                                     ?>
 
                                     <?php
+                                    if ($huisje['wifi_present'] ==  1) {
+                                        echo "<li>Wifi</li>";
+                                    }
+                                    ?>
+
+                                    <?php
                                     if ($huisje['bbq_present'] ==  1) {
                                         echo "<li>BBQ</li>";
                                     }
@@ -154,7 +161,6 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                                         echo "<li>Open Haard</li>";
                                     }
                                     ?>
-
                                 </ul>
 
                             </div>
@@ -168,7 +174,7 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
     </main>
     <footer>
         <div></div>
-        <div>copyright Quattro Rentals BV.</div>
+        <div>copyright Mike's BNB Palace BV.</div>
         <div></div>
 
     </footer>
@@ -176,15 +182,22 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
     <script>
         // De verschillende markers moeten geplaatst worden. Vul de longitudes en latitudes uit de database hierin
         var coordinates = [
+            [52.44902,4.61001],
+            [52.99864,6.64928],
+            [52.30340,6.36800],
+            [50.89720,5.90979]
 
-
-        ];
+    ];
 
         var bubbleTexts = [
-
+        "<h2>Ijmuiden Cottage</h2> <img src=images/Ijmuiden.jpg width = 100% height= 110%>",
+        "<h2>Assen Bungalow</h2> <img src=images/Assen.jpg width = 100% height= 110%>",
+        "<h2>Espelo Entree</h2> <img src=images/Espelo.jpg width = 100% height= 110%>",
+        "<h2>Weustenrade Woning</h2> <img src=images/Weustenrade.jpg width = 100% height= 110%>",
 
         ];
     </script>
     <script src="js/place_markers.js"></script>
+
 </body>
 </html>
