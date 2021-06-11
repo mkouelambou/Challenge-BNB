@@ -26,8 +26,23 @@ if (isset($_GET['filter_submit'])) {
         $sql = "SELECT * FROM homes WHERE pool_present = 1"; // query die zoekt of er een ZWEMBAD aanwezig is.
     }
 }
+    if ($_GET['faciliteiten'] == "bbq") {
+        $bbqIsChecked = true;
 
+        $sql = "SELECT * FROM homes WHERE bbq_present = 1 "; // query die zoekt of er een BBQ aanwezig is.
+    }
 
+     if ($_GET['faciliteiten'] == "dishwasher") {
+        $dishwasherIsChecked = true;
+
+        $sql = "SELECT * FROM homes WHERE dishwasher_present = 1 "; // query die zoekt of er een BBQ aanwezig is.
+    }
+    
+    if ($_GET['faciliteiten'] == "bbq") {
+        $bbqIsChecked = true;
+
+        $sql = "SELECT * FROM homes WHERE bbq_present = 1 "; // query die zoekt of er een BBQ aanwezig is.
+    }
 if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een sql-query correct geschreven is en dus data ophaalt uit de DB
     $database_gegevens = $db_conn->query($sql)->fetchAll(PDO::FETCH_ASSOC); //deze code laten staan
 }
@@ -90,7 +105,6 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                 <div class="totalPriceBlock"><Totale prijs> &euro;<span class="totalPrice"><?php echo $totaal;?></span></div>
             </div>
             </div>
-
         <div class="right">
             <div class="filter-box">
                 <form class="filter-form">
@@ -115,7 +129,19 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                         <label for="bbq">Open Haard</label>
                         <input type="radio" id="open haard" name="faciliteiten" value="bbq" <?php if ('$bbqIsChecked') echo 'checked' ?>>
                     </div>
+                    <div class="form-control">
+                        <label for="dishwasher">Vaatwasser</label>
+                        <input type="radio" id="dishwasher" name="faciliteiten" value="dishwasher" <?php if ('$dishwasherIsChecked') echo 'checked' ?>>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="bike">Fietsverhuur</label> 
+                        <input type="radio" id="bike" name="faciliteiten" value="bike" <?php if ('$bikeIsChecked') echo 'checked' ?>>
+                    </div>
                     <button type="submit" name="filter_submit">Filter</button>
+                    
+                    <div class = "images"></div>
+                    <img src = images/Ijmuiden.jpg width = 85% height = 15%>
                 </form>
                 <div class="homes-box">
                     <?php if (isset($database_gegevens) && $database_gegevens != null) : ?>
@@ -123,6 +149,9 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                             <h4>
                                 <?php echo $huisje['name'] ?>;
                             </h4>
+                            <div>
+                            <img class="images" src="images/<?php echo $huisje['image'];?>" style="width: 473.997; height: 315px;">
+                            </div>
 
                             <p>
                                 <?php echo $huisje['description'] ?>;
@@ -164,8 +193,9 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                                 </ul>
 
                             </div>
-
-                        <?php endforeach; ?>
+                            
+                            <?php endforeach; ?>
+           
                     <?php endif; ?>
                 </div>
 
