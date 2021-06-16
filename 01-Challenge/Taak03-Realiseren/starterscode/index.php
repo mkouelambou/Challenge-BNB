@@ -10,7 +10,9 @@ if (!isset($db_conn)) { //deze if-statement checked of er een database-object aa
 $database_gegevens = null;
 $poolIsChecked = false;
 $bathIsChecked = false;
-
+$bbqIsChecked = false;
+$dishwasherIsChecked = false;
+$bikeIsChecked = false;
 $sql = "SELECT * FROM homes WHERE 1"; //Selecteer alle huisjes uit de database
 if (isset($_GET['filter_submit'])) {
 
@@ -26,28 +28,10 @@ if (isset($_GET['filter_submit'])) {
         $sql = "SELECT * FROM homes WHERE pool_present = 1"; // query die zoekt of er een ZWEMBAD aanwezig is.
     }
 }
-    if ($_GET['faciliteiten'] == "bbq") {
-        $bbqIsChecked = true;
-
-        $sql = "SELECT * FROM homes WHERE bbq_present = 1 "; // query die zoekt of er een BBQ aanwezig is.
-    }
-
-     if ($_GET['faciliteiten'] == "dishwasher") {
-        $dishwasherIsChecked = true;
-
-        $sql = "SELECT * FROM homes WHERE dishwasher_present = 1 "; // query die zoekt of er een BBQ aanwezig is.
-    }
-    
-    if ($_GET['faciliteiten'] == "bbq") {
-        $bbqIsChecked = true;
-
-        $sql = "SELECT * FROM homes WHERE bbq_present = 1 "; // query die zoekt of er een BBQ aanwezig is.
-    }
+  
 if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een sql-query correct geschreven is en dus data ophaalt uit de DB
     $database_gegevens = $db_conn->query($sql)->fetchAll(PDO::FETCH_ASSOC); //deze code laten staan
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -66,11 +50,19 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
 
 <body>
     <header>
-        <h1>Mike's BNB Palace </h1>
+    <div class = "logo">
+    <img src = "images/logo_small.png">
+    </div>
+    <style>
+    body {
+         background-color: #E76F51;
+    }
+    </style>
     </header>
     <main>
         <div class="left">
             <div id="mapid"></div>
+            <form action="" method="POST">
             <div class="book">
                 <h3>Reservering maken</h3>
                 <div class="form-control">
@@ -97,12 +89,19 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                     <label for="beddengoed_nee">Nee</label>
                     <input type="radio" id="beddengoed_nee" name="beddengoed" value="nee">
                 </div>
-                <button>Reserveer huis</button>
+                <input type = "submit" name= "submit" value="Reserveer huis"></input>
             </div>
             <div class="currentBooking">
                 <div class="bookedHome"></div>
-                 <?php  $totaal = ($huisje ['price_p_p_p_n'] * 'aantal_dagen' * 'aantal_personen'); ?>
-                <div class="totalPriceBlock"><Totale prijs> &euro;<span class="totalPrice"><?php echo $totaal;?></span></div>
+                <?php if (isset($database_gegevens) && $database_gegevens != null) : ?>
+                    <?php foreach ($database_gegevens as $huisje) : ?> 
+                        <?php $aantal_personen = $_POST['aantal_personen']; ?>
+                        <?php $aantal_dagen = $_POST['aantal_dagen']; ?> 
+                        <?php $totaal = ($huisje['price_p_p_p_n'] * $aantal_dagen) * $aantal_personen; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <div class="totalPriceBlock"><Totale prijs>Totale Prijs : &euro;<span class="totalPrice"><?php if(isset($_POST['submit'])){echo $totaal;};?></span></div>
+            </div>
             </div>
             </div>
         <div class="right">
@@ -119,7 +118,7 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                         <label for="zwembad">Zwembad</label>
                         <input type="radio" id="zwembad" name="faciliteiten" value="zwembad" <?php if ('$poolIsChecked') echo 'checked' ?>>
                     </div>
-
+ 
                     <div class="form-control">
                         <label for="wifi">Wifi</label>
                         <input type="radio" id="wifi" name="faciliteiten" value="wifi" <?php if ('$wifiIsChecked') echo 'checked' ?>>
@@ -133,15 +132,11 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                         <label for="dishwasher">Vaatwasser</label>
                         <input type="radio" id="dishwasher" name="faciliteiten" value="dishwasher" <?php if ('$dishwasherIsChecked') echo 'checked' ?>>
                     </div>
-
                     <div class="form-control">
                         <label for="bike">Fietsverhuur</label> 
                         <input type="radio" id="bike" name="faciliteiten" value="bike" <?php if ('$bikeIsChecked') echo 'checked' ?>>
                     </div>
                     <button type="submit" name="filter_submit">Filter</button>
-                    
-                    <div class = "images"></div>
-                    <img src = images/Ijmuiden.jpg width = 85% height = 15%>
                 </form>
                 <div class="homes-box">
                     <?php if (isset($database_gegevens) && $database_gegevens != null) : ?>
@@ -151,8 +146,8 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                             </h4>
                             <div>
                             <img class="images" src="images/<?php echo $huisje['image'];?>" style="width: 473.997; height: 315px;">
+                            
                             </div>
-
                             <p>
                                 <?php echo $huisje['description'] ?>;
                             </p>
@@ -162,32 +157,32 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
 
                                     <?php
                                     if ($huisje['bath_present'] ==  1) {
-                                        echo "<li>Ligbad</li>";
+                                        echo "<li>Ligbad is aanwezig!</li>";
                                     }
                                     ?>
 
 
                                     <?php
                                     if ($huisje['pool_present'] ==  1) {
-                                        echo "<li>Zwembad</li>";
+                                        echo "<li>Zwembad is aanwezig!</li>";
                                     }
                                     ?>
 
                                     <?php
                                     if ($huisje['wifi_present'] ==  1) {
-                                        echo "<li>Wifi</li>";
+                                        echo "<li>Wifi is aanwezig!</li>";
                                     }
                                     ?>
 
                                     <?php
                                     if ($huisje['bbq_present'] ==  1) {
-                                        echo "<li>BBQ</li>";
+                                        echo "<li>BBQ is aanwezig!</li>";
                                     }
                                     ?>
 
                                     <?php
                                     if ($huisje['fireplace_present'] ==  1) {
-                                        echo "<li>Open Haard</li>";
+                                        echo "<li>Open Haard is aanwezig</li>";
                                     }
                                     ?>
                                 </ul>
@@ -195,7 +190,6 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                             </div>
                             
                             <?php endforeach; ?>
-           
                     <?php endif; ?>
                 </div>
 
