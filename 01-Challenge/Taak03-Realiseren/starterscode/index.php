@@ -55,11 +55,14 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
     </div>
     <style>
     body {
-         background-color: #E76F51;
+         background-color: #2A9D8F;
+         font-family: 'Arvo', serif;
     }
     </style>
     </header>
     <main>
+    <div class = "header">
+    </div>
         <div class="left">
             <div id="mapid"></div>
             <form action="" method="POST">
@@ -72,8 +75,7 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                         <option value="2">Assen Bungalow</option>
                         <option value="3">Espelo Entree</option>
                         <option value="4">Weustenrade Woning</option>
-                    </select>
-                </div>
+                  </select>
                 <div class="form-control">
                     <label for="aantal_personen">Aantal personen</label>
                     <input type="number" name="aantal_personen" id="aantal_personen">
@@ -157,32 +159,33 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
 
                                     <?php
                                     if ($huisje['bath_present'] ==  1) {
-                                        echo "<li>Ligbad is aanwezig!</li>";
+                                        echo "<li>Ligbad</li>";
                                     }
                                     ?>
 
 
                                     <?php
                                     if ($huisje['pool_present'] ==  1) {
-                                        echo "<li>Zwembad is aanwezig!</li>";
+                                        echo "<li>Zwembad</li>";
                                     }
                                     ?>
 
                                     <?php
                                     if ($huisje['wifi_present'] ==  1) {
-                                        echo "<li>Wifi is aanwezig!</li>";
+                                        echo "<li>Wifi</li>";
+                                    
                                     }
                                     ?>
 
                                     <?php
                                     if ($huisje['bbq_present'] ==  1) {
-                                        echo "<li>BBQ is aanwezig!</li>";
+                                        echo "<li>BBQ</li>";
                                     }
                                     ?>
 
                                     <?php
                                     if ($huisje['fireplace_present'] ==  1) {
-                                        echo "<li>Open Haard is aanwezig</li>";
+                                        echo "<li>Open Haard</li>";
                                     }
                                     ?>
                                 </ul>

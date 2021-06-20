@@ -1,32 +1,56 @@
 #mapid {
+    margin-top: 15px;
     height: 670px;
+    width: 850px;
 }
 
 main {
     display: flex;
 }
 
-main .left{
-    width: 50%;}
-
-main .right {
-    margin-left: 20px;
-    width: 50%;
+.book{
+       display: inline-flex;
+       flex-direction: initial;
+       width: 90%;
+       height: 200px;
+       padding: 25px;
+       background-color: #264653;   
+       border-style: solid;
+       border-width: 2px;
+       border-color: black; 
 }
+.left{
+    display: block;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+}
+body{
+    display: block;
+    justify-content: center;
+}
+.filter-box{
+    margin: 20px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
 
 .right .filter-box .homes-box {
     width: 100%;
     padding: 20px;
     list-style: none;
+    justify-self: center;
 }
 
 footer {
-    display: flex;
+    display: block;
     position: static;
     bottom: 0px;
     height: 100px;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     border-top: 1px solid blue;
 }
@@ -38,11 +62,16 @@ footer div {
 
 .filter-box label{
     width: 100px;
+    background-color: blue;
+    align-content: center;
     line-height: 1.8em;
+    justify-content: space-between;
 }
 
 .form-control{
     line-height: 50px;
+    justify-content: start;
+
 }
 
 .form-control label{
