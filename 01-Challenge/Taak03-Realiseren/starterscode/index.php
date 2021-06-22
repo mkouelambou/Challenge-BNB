@@ -46,10 +46,15 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <link href="css/index.css" rel="stylesheet">
+    <head>
+    <script src="https://kit.fontawesome.com/d880e94c0e.js" crossorigin="anonymous"></script>
+    </head>
 </head>
-
 <body>
     <header>
+    <div class="header">
+        <div class="load">
+        </div>
     <div class = "logo">
     <img src = "images/logo_small.png">
     </div>
@@ -61,8 +66,7 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
     </style>
     </header>
     <main>
-    <div class = "header">
-    </div>
+    
         <div class="left">
             <div id="mapid"></div>
             <form action="" method="POST">
@@ -87,7 +91,7 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                 <div class="form-control">
                     <h5>Beddengoed</h5>
                     <label for="beddengoed_ja">Ja</label>
-                    <input type="radio" id="beddengoed_ja" name="beddengoed" value="ja">
+                    <input type="radio" id="beddengoed_ja" name="beddengoed" value="ja" checked>
                     <label for="beddengoed_nee">Nee</label>
                     <input type="radio" id="beddengoed_nee" name="beddengoed" value="nee">
                 </div>
@@ -113,28 +117,34 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                         <a href="index.php">Reset Filters</a>
                     </div>
                     <div class="form-control">
+                        <i class="fas fa-hot-tub"></i>
                         <label for="ligbad">Ligbad</label>
-                        <input type="radio" id="ligbad" name="faciliteiten" value="ligbad" <?php if ('$bathIsChecked') echo 'checked' ?>>
+                        <input type="radio" id="ligbad" name="faciliteiten" value="ligbad"  checked <?php if ('$bathIsChecked') echo 'checked' ?>>
                     </div>
                     <div class="form-control">
+                        <i class="fas fa-swimming-pool"></i>
                         <label for="zwembad">Zwembad</label>
                         <input type="radio" id="zwembad" name="faciliteiten" value="zwembad" <?php if ('$poolIsChecked') echo 'checked' ?>>
                     </div>
  
                     <div class="form-control">
+                        <i class="fas fa-wifi"></i>
                         <label for="wifi">Wifi</label>
                         <input type="radio" id="wifi" name="faciliteiten" value="wifi" <?php if ('$wifiIsChecked') echo 'checked' ?>>
                     </div>
 
                     <div class="form-control">
+                        <img src = "images/fireplace.png">
                         <label for="bbq">Open Haard</label>
                         <input type="radio" id="open haard" name="faciliteiten" value="bbq" <?php if ('$bbqIsChecked') echo 'checked' ?>>
                     </div>
                     <div class="form-control">
+                         <img src = "images/dishwasher.png">
                         <label for="dishwasher">Vaatwasser</label>
                         <input type="radio" id="dishwasher" name="faciliteiten" value="dishwasher" <?php if ('$dishwasherIsChecked') echo 'checked' ?>>
                     </div>
                     <div class="form-control">
+                        <i class="fas fa-bicycle"></i>
                         <label for="bike">Fietsverhuur</label> 
                         <input type="radio" id="bike" name="faciliteiten" value="bike" <?php if ('$bikeIsChecked') echo 'checked' ?>>
                     </div>

@@ -3,16 +3,18 @@
     height: 670px;
     width: 850px;
 }
+/* background: url("images/huisje1.jpg")  center/cover no-repeat; */
 
 main {
-    display: flex;
+    display: inline-block;
 }
 
 .book{
-       display: inline-flex;
-       flex-direction: initial;
-       width: 90%;
-       height: 200px;
+       display: flex;
+       flex-direction: row;
+       justify-content: space-between;
+       width: 100%;
+       height: 310px;
        padding: 25px;
        background-color: #264653;   
        border-style: solid;
@@ -20,7 +22,7 @@ main {
        border-color: black; 
 }
 .left{
-    display: block;
+    display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
@@ -45,12 +47,16 @@ body{
 }
 
 footer {
-    display: block;
+    display: inline-flex;
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    padding: 20px;
     position: static;
     bottom: 0px;
     height: 100px;
     width: 100%;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     border-top: 1px solid blue;
 }
@@ -62,15 +68,16 @@ footer div {
 
 .filter-box label{
     width: 100px;
-    background-color: blue;
+    background-color: green;
     align-content: center;
     line-height: 1.8em;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .form-control{
     line-height: 50px;
     justify-content: start;
+
 
 }
 
@@ -78,3 +85,28 @@ footer div {
     letter-spacing: 0.15em;
 
 }
+body header{
+    width: 100%;
+}
+.header{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: slide 10s infinite; 
+    }
+    .load{
+    animation: slide 30s;
+    }
+    @keyframes slide{
+        20%{
+          background-image: url("images/header1.jpg");
+        }
+        100%{
+          background-image: url("header2.jpg");
+        } }
