@@ -52,9 +52,12 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
 </head>
 <body>
     <header>
+    <div class="load">
     <div class="header">
-        <div class="load">
-        </div>
+        <img src = "images/huis1.jpg">
+        <img src = "images/huis2.jpg">
+    </div>
+    </div>
     <div class = "logo">
     <img src = "images/logo_small.png">
     </div>
