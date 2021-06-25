@@ -55,8 +55,10 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
 </head>
 <body>
     <header>
-    <div class="img">
-    <img src = "images/huisje3.png"></img>
+        <div class="header">
+        <div class="image">
+        <img src= "images/huisje1.jpg"></img>
+        </div>
     <div class = "logo">
     <img src = "images/logo_small.png">
     </div>
@@ -102,6 +104,9 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
             <div class="currentBooking">
                 <div class="bookedHome"></div>
                 <?php if (isset($database_gegevens) && $database_gegevens != null) : ?>
+                   <?php $totaal = 0; ?>
+                   <?php $aantal_dagen = 0; ?>
+                   <?php $aantal_personen = 0; ?>
                     <?php foreach ($database_gegevens as $huisje) : ?> 
                         <?php $aantal_personen = $_POST['aantal_personen']; ?>
                         <?php $aantal_dagen = $_POST['aantal_dagen']; ?> 
