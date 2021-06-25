@@ -46,25 +46,24 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Benne&display=swap" rel="stylesheet">
     <head>
     <script src="https://kit.fontawesome.com/d880e94c0e.js" crossorigin="anonymous"></script>
     </head>
 </head>
+<head>
+</head>
 <body>
     <header>
-    <div class="load">
-    <div class="header">
-        <img src = "images/huis1.jpg">
-        <img src = "images/huis2.jpg">
-    </div>
-    </div>
+    <div class="img">
+    <img src = "images/huisje3.png"></img>
     <div class = "logo">
     <img src = "images/logo_small.png">
     </div>
     <style>
     body {
-         background-color: #2A9D8F;
-         font-family: 'Arvo', serif;
+        background-color: #2A9D8F;
+        font-family: 'Benne', serif;
     }
     </style>
     </header>

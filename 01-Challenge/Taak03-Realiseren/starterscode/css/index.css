@@ -1,9 +1,8 @@
 #mapid {
     margin-top: 15px;
-    height: 670px;
-    width: 850px;
+    height: 870px;
+    width: 1250px;
 }
-/* background: url("images/huisje1.jpg")  center/cover no-repeat; */
 
 main {
     display: inline-block;
@@ -19,7 +18,7 @@ main {
        background-color: #264653;   
        border-style: solid;
        border-width: 2px;
-       border-color: black; 
+       border-color:white; 
 }
 .left{
     display: flex;
@@ -88,34 +87,12 @@ footer div {
 body header{
     width: 100%;
 }
-.header{
-    width: 100%;
-    height: 600px;
+
+
+#img{
+    width: 10%;
+    height: 10%;
+    min-height: 100vh;
+    padding: 25px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    animation: slide 20s infinite; 
     }
-    .load{
-    width: 100%;
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    animation: slide 20s infinite;
-    }
-    @keyframes slide{
-        50%{
-          background-image: url("images/huis1.jpg");
-        }
-        100%{
-          background-image: url("images/huis2.jpg");
-        } }
