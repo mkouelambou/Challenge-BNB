@@ -86,11 +86,11 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                   </select>
                 <div class="form-control">
                     <label for="aantal_personen">Aantal personen</label>
-                    <input type="number" name="aantal_personen" id="aantal_personen">
+                    <input type="number" name="aantal_personen" id="aantal_personen" >
                 </div>
                 <div class="form-control">
                     <label for="aantal_dagen">Aantal dagen</label>
-                    <input type="number" name="aantal_dagen" id="aantal_dagen">
+                    <input type="number" name="aantal_dagen" id="aantal_dagen" >
                 </div>
                 <div class="form-control">
                     <h5>Beddengoed</h5>
@@ -103,14 +103,28 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
             </div>
             <div class="currentBooking">
                 <div class="bookedHome"></div>
-                <?php if (isset($database_gegevens) && $database_gegevens != null) : ?>
-                   <?php $totaal = 0; ?>
-                   <?php $aantal_dagen = 0; ?>
-                   <?php $aantal_personen = 0; ?>
+                <?php 
+                $aantal_personen = 0;
+                $aantal_dagen = 0;
+                $totaal = 0;
+
+                    if(isset($_POST['aantal_personen'])) {
+                        $aantal_personen = $_POST['aantal_personen'];
+                    } else {
+                        $aantal_personen = 0;
+                    }
+
+                    if(isset($_POST['aantal_dagen'])) {
+                        $aantal_dagen = $_POST['aantal_dagen'];
+                    } else {
+                        $aantal_dagen = 0;
+                    }
+                ?>
+                
+                <?php 
+                if (isset($database_gegevens) && $database_gegevens != null) : ?>
                     <?php foreach ($database_gegevens as $huisje) : ?> 
-                        <?php $aantal_personen = $_POST['aantal_personen']; ?>
-                        <?php $aantal_dagen = $_POST['aantal_dagen']; ?> 
-                        <?php $totaal = ($huisje['price_p_p_p_n'] * $aantal_dagen) * $aantal_personen; ?>
+                        <?php $totaal = ($huisje['price_p_p_p_n'] * $aantal_dagen) * $aantal_personen ?>
                     <?php endforeach; ?>
                 <?php endif; ?>
                 <div class="totalPriceBlock"><Totale prijs>Totale Prijs : &euro;<span class="totalPrice"><?php if(isset($_POST['submit'])){echo $totaal;};?></span></div>
