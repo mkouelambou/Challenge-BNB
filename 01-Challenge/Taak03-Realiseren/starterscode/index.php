@@ -104,9 +104,6 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
             <div class="currentBooking">
                 <div class="bookedHome"></div>
                 <?php 
-                $aantal_personen = 0;
-                $aantal_dagen = 0;
-                $totaal = 0;
 
                     if(isset($_POST['aantal_personen'])) {
                         $aantal_personen = $_POST['aantal_personen'];
@@ -123,8 +120,8 @@ if (is_object($db_conn->query($sql))) { //deze if-statement controleert of een s
                 
                 <?php 
                 if (isset($database_gegevens) && $database_gegevens != null) : ?>
-                    <?php foreach ($database_gegevens as $huisje) : ?> 
-                        <?php $totaal = ($huisje['price_p_p_p_n'] * $aantal_dagen) * $aantal_personen ?>
+                    <?php foreach ($database_gegevens as $huisje) : ?>
+                        <?php $totaal = ($huisje['price_p_p_p_n'] * $aantal_dagen) * $aantal_personen;?>
                     <?php endforeach; ?>
                 <?php endif; ?>
                 <div class="totalPriceBlock"><Totale prijs>Totale Prijs : &euro;<span class="totalPrice"><?php if(isset($_POST['submit'])){echo $totaal;};?></span></div>
